@@ -5,9 +5,9 @@
 ## 📖 Descripción del Proyecto
 Alky Wallet es una aplicación web de billetera digital desarrollada como proyecto integrador del módulo de Frontend. Permite a los usuarios simular operaciones financieras básicas mediante una interfaz amigable y ultra-simplificada, ideal para asentar las bases del desarrollo web, construida con **HTML5, Bootstrap y JavaScript (jQuery)**.
 
-**Funcionalidades principales:**
+***Funcionalidades principales:***
 * 🔐 **Autenticación:** Inicio de sesión validado en pantalla (Usuario: `admin@wallet.com` / Pass: `7jW7Yc15T`).
-* 💵 **Gestión de Saldo:** Visualización y actualización en tiempo real usando el almacenamiento local del navegador (`localStorage`).
+* 💵 **Gestión de Saldos:** Visualización y actualización en tiempo real usando el almacenamiento local del navegador (`localStorage`).
 * 📥 **Depósitos:** Ingreso de fondos directo con validación de montos positivos mediante eventos de clic.
 * 💸 **Transferencias:** Envío de dinero a contactos seleccionados utilizando alertas dinámicas e interacciones simples (`prompt` nativo).
 * 📊 **Historial:** Vista estática de demostración para la práctica y entendimiento de maquetación de listas y componentes de Bootstrap.
