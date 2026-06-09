@@ -8,71 +8,41 @@
 </head>
 <body>
 
-    <div class="container mt-5" style="max-width: 500px;">
-        <h2 class="mb-4">Depositar Dinero</h2>
-        <div id="alertMensaje" class="alert" style="display: none;"></div>
-        <div class="card p-4">
-            <form id="depositForm">
-                <div class="form-group">
-                    <label for="inputDeposito">Monto a depositar:</label>
-                    <input type="number" class="form-control" id="inputDeposito" placeholder="Ej: 1000" min="1" required>
-                </div>
-                <button type="submit" class="btn btn-success btn-block">Realizar depósito</button>
-            </form>
-        </div>
-        <a href="menu.html" class="btn btn-outline-secondary mt-3">Volver al Menú Principal</a>
+    <div class="container mt-5">
+        <h2>Depositar Dinero</h2>
+        <hr>
+
+        <div id="alertMensaje" class="alert" hidden></div>
+
+        <form id="depositForm">
+            <div class="form-group">
+                <label>Monto a depositar:</label>
+                <input type="number" class="form-control" id="inputDeposito" min="1" required>
+            </div>
+            <button type="submit" class="btn btn-success">Realizar depósito</button>
+        </form>
+        
+        <br>
+        <a href="menu.html" class="btn btn-link">Volver al Menú</a>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
     <script>
         $(document).ready(function() {
-            var saldoActual = localStorage.getItem('walletSaldo');
-            if(saldoActual === null) {
-                saldoActual = 0;
-            } else {
-                saldoActual = parseInt(saldoActual); 
-            }
+            var saldoActual = Number(localStorage.getItem('walletSaldo')) || 0;
 
             $('#depositForm').submit(function(evento) {
                 evento.preventDefault();
-                var montoIngresado = $('#inputDeposito').val();
-                var montoNumero = parseInt(montoIngresado);
+                var monto = Number($('#inputDeposito').val());
 
-                if(montoNumero > 0) {
-                    // 1. Sumar Saldo
-                    var nuevoSaldo = saldoActual + montoNumero;
-                    localStorage.setItem('walletSaldo', nuevoSaldo);
-                    
-                    // 2. Guardar en Historial
-                    var historial = JSON.parse(localStorage.getItem('walletHistorial')) || [];
-                    
-                    var movimiento = {
-                        tipo: 'Depósito',
-                        descripcion: 'Depósito de saldo',
-                        monto: montoNumero,
-                        fecha: new Date().toLocaleDateString(),
-                        esIngreso: true 
-                    };
-
-                    historial.unshift(movimiento);
-                    localStorage.setItem('walletHistorial', JSON.stringify(historial));
-
-                    // 3. Feedback
-                    $('#alertMensaje').removeClass('alert-danger').addClass('alert-success');
-                    $('#alertMensaje').text('¡Depósito exitoso! Nuevo saldo: $' + nuevoSaldo);
-                    $('#alertMensaje').slideDown();
-                    $('#inputDeposito').val('');
-                    
-                    saldoActual = nuevoSaldo;
-
-                } else {
-                    $('#alertMensaje').removeClass('alert-success').addClass('alert-danger');
-                    $('#alertMensaje').text('El monto debe ser mayor a 0');
-                    $('#alertMensaje').slideDown();
-                }
+                saldoActual = saldoActual + monto;
+                localStorage.setItem('walletSaldo', saldoActual);
+                
+                $('#alertMensaje').removeClass('alert-danger').addClass('alert-success')
+                                  .text('¡Depósito exitoso! Nuevo saldo: $' + saldoActual)
+                                  .removeAttr('hidden'); 
+                
+                $('#inputDeposito').val('');
             });
         });
     </script>
