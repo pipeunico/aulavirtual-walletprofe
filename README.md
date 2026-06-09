@@ -9,7 +9,7 @@ Alky Wallet es una aplicación web de billetera digital desarrollada como proyec
 * 🔐 **Autenticación:** Inicio de sesión validado en pantalla (Usuario: `admin@wallet.com` / Pass: `7jW7Yc15T`).
 * 💵 **Gestión de Saldos:** Visualización y actualización en tiempo real usando el almacenamiento local del navegador (`localStorage`).
 * 📥 **Depósitos:** Ingreso de fondos directo con validación de montos positivos mediante eventos de clic.
-* 💸 **Transferencias:** Envío de dinero a contactos seleccionados utilizando alertas dinámicas e interacciones simples (`prompt` nativo).
+* 💸 **Transferencias:** Envíos de dinero a contactos seleccionados utilizando alertas dinámicas e interacciones simples (`prompt` nativo).
 * 📊 **Historial:** Vista estática de demostración para la práctica y entendimiento de maquetación de listas y componentes de Bootstrap.
 
 ---
