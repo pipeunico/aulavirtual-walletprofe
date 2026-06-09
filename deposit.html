@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet - Depositar</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h2>Depositar Dinero</h2>
+        <hr>
+
+        <div id="alertMensaje" class="alert alert-success" hidden></div>
+
+        <div id="depositBox">
+            <div class="form-group">
+                <label>Monto a depositar:</label>
+                <input type="number" class="form-control" id="inputDeposito">
+            </div>
+            <button type="button" id="btnDepositar" class="btn btn-success">Realizar depósito</button>
+        </div>
+        
+        <br>
+        <a href="menu.html" class="btn btn-link">Volver al Menú</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        var saldoActual = Number(localStorage.getItem('walletSaldo')) || 0;
+
+        $('#btnDepositar').click(function() {
+            var monto = Number($('#inputDeposito').val());
+
+            if (monto > 0) {
+                saldoActual = saldoActual + monto;
+                localStorage.setItem('walletSaldo', saldoActual);
+                
+                $('#alertMensaje').text('¡Depósito exitoso! Nuevo saldo: $' + saldoActual).removeAttr('hidden'); 
+                $('#inputDeposito').val('');
+            } else {
+                alert('Por favor, ingresa un monto válido.');
+            }
+        });
+    </script>
+</body>
+</html>

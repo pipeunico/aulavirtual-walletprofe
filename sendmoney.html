@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet - Enviar Dinero</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h2>Enviar Dinero a Contactos</h2>
+        <hr>
+
+        <ul class="list-group mb-4">
+            <li class="list-group-item">
+                <div class="contact-info"><strong>Juan Pérez</strong> - Banco Estado</div>
+                <button class="btn btn-sm btn-primary mt-2 btn-enviar">Seleccionar</button>
+            </li>
+            <li class="list-group-item">
+                <div class="contact-info"><strong>María González</strong> - Banco de Chile</div>
+                <button class="btn btn-sm btn-primary mt-2 btn-enviar">Seleccionar</button>
+            </li>
+        </ul>
+
+        <a href="menu.html" class="btn btn-link">Volver al Menú</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $('.btn-enviar').click(function() {
+            var nombreContacto = $(this).siblings('.contact-info').find('strong').text();
+            var saldoActual = Number(localStorage.getItem('walletSaldo')) || 0;
+            
+            var montoTexto = prompt("¿Cuánto dinero deseas enviar a " + nombreContacto + "?");
+            var montoAEnviar = Number(montoTexto);
+
+            if (isNaN(montoAEnviar) || montoAEnviar <= 0) {
+                alert('Monto inválido.');
+                return; 
+            }
+
+            if (montoAEnviar > saldoActual) {
+                alert('Saldo insuficiente. Tienes: $' + saldoActual);
+                return; 
+            }
+
+            saldoActual = saldoActual - montoAEnviar;
+            localStorage.setItem('walletSaldo', saldoActual);
+            
+            alert('Transferencia exitosa.');
+            window.location.href = "menu.html";
+        });
+    </script>
+</body>
+</html>

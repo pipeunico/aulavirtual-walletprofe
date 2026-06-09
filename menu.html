@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet - Menú</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container mt-5 text-center">
+        <h2>Menú Principal</h2>
+        <hr>
+        
+        <h3>Saldo actual: <span id="saldoDisplay" class="text-success">$0</span></h3>
+        <br>
+
+        <a href="deposit.html" class="btn btn-primary btn-block mb-2">Depositar</a>
+        <a href="sendmoney.html" class="btn btn-info btn-block mb-2">Enviar Dinero</a>
+        <a href="transactions.html" class="btn btn-secondary btn-block mb-4">Últimos Movimientos</a>
+        
+        <button type="button" id="btnLogout" class="btn btn-danger">Cerrar Sesión</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        var saldo = Number(localStorage.getItem('walletSaldo')) || 0;
+        $('#saldoDisplay').text('$' + saldo);
+
+        $('#btnLogout').click(function() {
+            localStorage.clear();
+            window.location.href = "login.html";
+        });
+    </script>
+</body>
+</html>

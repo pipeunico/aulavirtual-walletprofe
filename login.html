@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet - Inicio</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h2>Inicio de sesión</h2>
+        <p class="text-muted"><small>Credenciales de prueba: <strong>admin@wallet.com</strong> / <strong>7jW7Yc15T</strong></small></p>
+        <br>
+        
+        <div id="loginBox">
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" class="form-control" id="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Contraseña:</label>
+                <input type="password" class="form-control" id="password" required>
+            </div>
+            
+            <button type="button" id="btnLogin" class="btn btn-primary">Entrar</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $('#btnLogin').click(function() {
+            //Sin jquery var email = document.getElementById('email').value;
+            var email = $('#email').val();
+            var pass = $('#password').val();
+            
+            if(email === 'admin@wallet.com' && pass === '7jW7Yc15T') {
+                window.location.href = 'menu.html';
+            } else {
+                alert('Datos incorrectos');
+                $('#password').val(''); 
+            }
+        });
+    </script>
+</body>
+</html>
